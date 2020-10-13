@@ -1,0 +1,51 @@
+score<!DOCTYPE html>
+<html>
+{% include 'base.html' %}
+
+<head>
+  <link rel='stylesheet' type='text/css' href='{{ url_for('static',filename='styles/style.css') }}' />
+</head>
+
+<body>
+<main>
+
+  {% include 'navbar.html' %}
+
+  <h1> reviews </h1>
+
+  {% for review in reviews %}
+  <div>
+    {{ review.reviewid }}
+    <p>
+      {{ review.message}}
+    </p>
+  </div>
+  {% endfor %}
+  <form action="" method="post">
+    <p>
+        <label for="product">Product</label>
+        <input type="product" name="product" id="product" value="" required>
+    </p>
+
+
+    <p>
+        <label for="score">score</label>
+        <input type="score" name="score" id="score" value="" required>
+    </p>
+
+
+    <p>
+        <label for="review">review</label>
+        <input type="review" name="review" id="review" value="" required>
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+  </form>
+
+
+</main>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+{% include 'base.html' %}
+
+<head>
+  <link rel='stylesheet' type='text/css' href='{{ url_for('static',filename='styles/style.css') }}' />
+</head>
+
+<body>
+
+  {% include 'navbar.html' %}
+<main>
+
+  <h1> Personal </h1>
+
+
+  {% for post in personal[::-1] %}
+  <div>
+    <p>
+      ----------------
+    </p>
+    <h4> {{ post.title }} </h4>
+    <h5> {{ post.date }} | {{post.postid}} </h5>
+    <p> </p>
+    <p>
+      {% autoescape false %}
+      {{ post.post }}
+      {% endautoescape %}
+    </p>
+
+  </div>
+  {% endfor %}
+  <p>
+    ----------------
+  </p>
+</main>
+
+
+</body>
+
+</html>

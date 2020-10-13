@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+{% include 'base.html' %}
+
+<head>
+  <link rel='stylesheet' type='text/css' href='{{ url_for('static',filename='styles/style.css') }}' />
+</head>
+
+<body>
+
+  {% include 'navbar.html' %}
+
+
+  <h1> Contact </h1>
+  <h4>{{ email }}</h4>
+  <h4>{{ phone }}</h4>
+  <h4>{{ linkedin }}</h4>
+  <h4>{{ git }}</h4>
+
+</body>
+
+</html>

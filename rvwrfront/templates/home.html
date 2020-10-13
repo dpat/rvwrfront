@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include 'base.html' %}
+  <link rel='stylesheet' type='text/css' href='{{ url_for('static',filename='styles/style.css') }}' />
+</head>
+
+<body>
+
+{% include 'navbar.html' %}
+
+<main>
+<br></br>
+<br></br>
+<br></br>
+  <h2> Welcome to RVWR </h2>
+  <a href="/signup/test">
+    <img src='{{url_for('static', filename='images/test.png')}}'/>
+  </a>
+  <ol class="post-list">
+  {% for post in blog[::-1] %}
+           <div class="row">
+             <p>
+             </p>
+               <li class="post-row">
+                   <span class="text-left">
+                      {% if post.title == '' %}
+                        <a href="/blog/{{post.postid}}"> Post {{post.postid}}</a>
+                      {% else %}
+                        <a href="/blog/{{post.postid}}">{{post.title}}</a>
+                      {% endif %}
+                   </span>
+                   &nbsp; &nbsp;
+                   <span class="post-date text-right">
+                       {{ post.date }}
+                   </span>
+               </li>
+           </div>
+  {% endfor %}
+
+</ol>
+</main>
+</body>
+
+</html>
