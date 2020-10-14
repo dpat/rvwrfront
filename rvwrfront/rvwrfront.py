@@ -75,7 +75,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/', methods=['get'])
+@app.route('/', methods=['post', 'get'])
 def home():
     if request.method == 'POST':
 
