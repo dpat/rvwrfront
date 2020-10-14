@@ -79,8 +79,8 @@ def logout():
 def home():
     if request.method == 'POST':
 
-        product = str(request.form.get('product'))
-        score = str(request.form.get('score'))
+        product = int(request.form.get('product'))
+        score = int(request.form.get('score'))
         review = str(request.form.get('review'))
 
         add_review(product,score,review)
