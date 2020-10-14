@@ -35,7 +35,7 @@ def get_random(id):
 
 
 def get_reviews(id):
-    return api_request(('reviews -get=' + str(id)))
+    return api_request(('review -get=' + str(id)))
 
 
 @app.route('/sms', methods=['POST'])
