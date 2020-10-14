@@ -84,8 +84,7 @@ def home():
         review = str(request.form.get('review'))
 
         add_review(product,score,review)
-        return redirect(url_for('reviews'))
-
+        return redirect(url_for('home'))
 
     else:
         reviews = get_reviews('all')
