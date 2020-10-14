@@ -84,9 +84,11 @@ def home():
         review = str(request.form.get('review'))
 
         add_review(product,score,review)
+        return redirect(url_for('reviews'))
+
 
     else:
-        return render_template('home.html')
+        return render_template('reviews.html')
 
 @app.route('/blog', methods=['get'])
 def blog():
