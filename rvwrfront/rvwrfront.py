@@ -20,7 +20,7 @@ def api_request(payload):
 
 
 def add_review(product,score,review):
-    return api_request(('review {1} {2} {3}'.format(product,score,review)))
+    return api_request(('review {0} {1} {2}'.format(product,score,review)))
 
 def get_blog(id):
     return api_request(('blog -get=' + str(id)))
@@ -35,7 +35,7 @@ def get_random(id):
 
 
 def get_reviews(id):
-    return api_request('reviews -get=' + str(id)))
+    return api_request(('reviews -get=' + str(id)))
 
 
 @app.route('/sms', methods=['POST'])
@@ -196,7 +196,7 @@ def reviews():
     if 'owner' not in session:
         return redirect(url_for('login'))
 
-    reviews = get_reviews()
+    reviews = get_reviews('all')
 
     return render_template('reviews.html', reviews=reviews)
 
