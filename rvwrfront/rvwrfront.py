@@ -88,7 +88,8 @@ def home():
 
 
     else:
-        return render_template('reviews.html')
+        reviews = get_reviews('all')
+        return render_template('reviews.html', reviews=reviews)
 
 @app.route('/blog', methods=['get'])
 def blog():
