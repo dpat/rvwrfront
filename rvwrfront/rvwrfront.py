@@ -90,51 +90,6 @@ def home():
         reviews = get_reviews('all')
         return render_template('reviews.html', reviews=reviews)
 
-@app.route('/blog', methods=['get'])
-def blog():
-
-    blog = get_blog('all')
-    for item in blog:
-        item['date'] = parse(item['date']).strftime('%B %d, %Y')
-    return render_template('blog.html', blog=blog)
-
-@app.route('/blog/category/<category>', methods=['get'])
-def blog_category(category):
-
-    blog = get_blog('all')
-    for item in blog:
-        item['date'] = parse(item['date']).strftime('%B %d, %Y')
-    return render_template('blog.html', blog=blog, category=category)
-
-@app.route('/blog/<id>', methods=['get'])
-def blog_id(id):
-
-    blog = [get_blog(id)]
-    for item in blog:
-        item['date'] = parse(item['date']).strftime('%B %d, %Y')
-    return render_template('blog.html', blog=blog, id=id)
-
-@app.route('/personal', methods=['get'])
-def personal():
-
-    if 'owner' not in session:
-        return redirect(url_for('login'))
-
-    personal = get_personal('all')
-
-    return render_template('personal.html', personal=personal)
-
-@app.route('/personal/category/<category>', methods=['get'])
-def personal_category(category):
-
-    if 'owner' not in session:
-        return redirect(url_for('login'))
-
-    personal = get_personal('all')
-
-    return render_template('personal.html', personal=personal, category=category)
-
-
 @app.route('/signup/<id>', methods=['post', 'get'])
 def signup_id(id):
     if request.method == 'POST':
@@ -149,55 +104,24 @@ def signup_id(id):
     else:
         return render_template('signup.html', id=id)
 
-@app.route('/personal/<id>', methods=['get'])
-def personal_id(id):
-
-    if 'owner' not in session:
-        return redirect(url_for('login'))
-
-    personal = [get_personal(id)]
-
-    return render_template('personal.html', personal=personal, id=id)
-
-@app.route('/random', methods=['get'])
-def random():
-
-    if 'owner' not in session:
-        return redirect(url_for('login'))
-
-    random = get_random('all')
-
-    return render_template('random.html', random=random)
-
-@app.route('/random/category/<category>', methods=['get'])
-def random_category(category):
-
-    if 'owner' not in session:
-        return redirect(url_for('login'))
-
-    random = get_random('all')
-
-    return render_template('random.html', random=random, category=category)
-
-@app.route('/random/<id>', methods=['get'])
-def random_id(id):
-
-    if 'owner' not in session:
-        return redirect(url_for('login'))
-
-    random = [get_random(id)]
-
-    return render_template('random.html', random=random, id=id)
-
 @app.route('/reviews', methods=['get'])
 def reviews():
 
     if 'owner' not in session:
         return redirect(url_for('login'))
 
-    reviews = get_reviews('all')
+    if request.method == 'POST':
 
-    return render_template('reviews.html', reviews=reviews)
+        product = int(request.form.get('product'))
+        score = int(request.form.get('score'))
+        review = str(request.form.get('review'))
+
+        add_review(product,score,review)
+        return redirect(url_for('home'))
+
+    else:
+        reviews = get_reviews('all')
+        return render_template('reviews.html', reviews=reviews)
 
 @app.route('/about', methods=['get'])
 def about():
